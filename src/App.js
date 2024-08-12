@@ -1,10 +1,9 @@
+import Body from './components/Body';
 import './index.css';
 
 function App() {
   return (
-    <div>
-      Hello World
-    </div>
+    <Body />
   );
 }
 
