@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react'
 import Login from './Login'
 import Browse from './Browse'
@@ -9,6 +10,14 @@ import { addUser, removeUser } from '../utils/userSlice';
 
 const Body = () => {
   const dispatch = useDispatch();
+=======
+import React from 'react'
+import Login from './Login'
+import Browse from './Browse'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+const Body = () => {
+>>>>>>> 1b9ed82d099514fbcedda93bc3bef4eff21d2636
     const appRouter = createBrowserRouter([
         {
             path: '/',
@@ -19,6 +28,7 @@ const Body = () => {
             element: <Browse />
         }
     ])
+<<<<<<< HEAD
 
     useEffect(()=>{
       onAuthStateChanged(auth, (user) => {
@@ -31,6 +41,8 @@ const Body = () => {
       });
       
     })
+=======
+>>>>>>> 1b9ed82d099514fbcedda93bc3bef4eff21d2636
   return (
     <RouterProvider router={appRouter}/>
   )
