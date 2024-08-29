@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { validate } from '../utils/validate';
-<<<<<<< HEAD
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../utils/fireBase';
 import { useNavigate } from 'react-router-dom';
@@ -64,25 +63,6 @@ const Login = () => {
       });
     
     }
-=======
-
-const Login = () => {
-  const [isSignInForm,setIsSignInForm] = useState(true);
-  const [errorMessage,setErrorMessage] = useState(null);
-  const email= useRef(null);
-  const password = useRef(null);
-  const name = useRef(null);
-  const handleToggleButton=()=>{
-     setIsSignInForm(!isSignInForm);
-  }
-  const onSubmitHandler=()=>{
-    //validation
-    console.log(email.current.value);
-    console.log(password.current.value);
-    //console.log(name.current.value);
-    const message = validate(email.current.value,password.current.value)
-    setErrorMessage(message);
->>>>>>> 1b9ed82d099514fbcedda93bc3bef4eff21d2636
   }
   return (
     <div>
@@ -93,7 +73,6 @@ const Login = () => {
         alt='logo'
         />
       </div>
-<<<<<<< HEAD
       <form onSubmit={(e)=> e.preventDefault()} className='w-4/12 absolute bg-black p-12 my-36 mx-auto right-0 left-0 text-white bg-opacity-80 rounded-lg'>
             <text className='font-bold text-3xl'>{!isSignIn? 'Sign Up' : 'Sign In'}</text>
             {!isSignIn &&
@@ -107,18 +86,6 @@ const Login = () => {
             {!isSignIn ? (<text>Already registered ? Sign In Now</text>):(<text>New to Netflix ?<span>Sign Up Now</span></text>)}
             </button>
         </form>
-=======
-      <form onSubmit={(e)=>e.preventDefault()} className='w-4/12 absolute bg-black p-12 my-36 mx-auto right-0 left-0 text-white bg-opacity-80 rounded-lg'>
-            <text className='font-bold text-3xl'>{!isSignInForm ? "Sign Up" : "Sign In"}</text>
-            {!isSignInForm && 
-            (<input className='my-5 px-2 py-4 w-full bg-gray-700' ref={name} type='text' placeholder='Full Name'/>)}
-            <input className='my-5 px-2 py-4 w-full bg-gray-700' ref={email} type='text' placeholder='Email or Mobile Number'/>
-            <input className='my-5 px-2 py-4 w-full bg-gray-700' ref={password} type='password' placeholder='Password'/>
-            <p className='font-bold text-red-500 py-2'>{errorMessage}</p>
-            <button className='my-6 p-2 w-full bg-red-700 rounded-lg' onClick={()=>onSubmitHandler()}>{!isSignInForm ? "Sign Up" : "Sign In"}</button>
-            <p className='cursor-pointer' onClick={()=>handleToggleButton()}>{!isSignInForm ? "Already registered? Sign In now" : "New to register? Sign Up now"}</p>
-      </form>
->>>>>>> 1b9ed82d099514fbcedda93bc3bef4eff21d2636
 
     </div>
   )
