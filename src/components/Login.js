@@ -6,6 +6,7 @@ import { auth } from '../utils/fireBase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { BG_URL, PHOTO_AVATAR } from '../utils/constants';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,9 +21,9 @@ const Login = () => {
   }
   const onSubmitHandler=()=>{
     const message = validate(email.current.value,password.current.value);
-    if(message){
+    
       setErrorMessage(message);
-    }
+    if(message) return;
     if(!isSignIn){
       createUserWithEmailAndPassword(auth,email.current.value,password.current.value)
       .then((userCredential) => {
@@ -30,11 +31,11 @@ const Login = () => {
         const user = userCredential.user;
         console.log(user);
         updateProfile(user, {
-          displayName: name.current.value, photoURL: "https://media.licdn.com/dms/image/v2/D5603AQH2mMTUIGJMog/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1720825589274?e=1730332800&v=beta&t=vzOlBcy-rAlONnDQWwSf0u__l82j83Q5_pxMRmLyUsk"
+          displayName: name.current.value, 
+          photoURL: PHOTO_AVATAR
         }).then(() => {
           const {uid,email,displayName,photoURL} = auth.currentUser;
           dispatch(addUser({uid: uid,email: email,name: displayName,photoURL:photoURL}));
-          navigate('/browse')
         }).catch((error) => {
           setErrorMessage(error.message);
         });
@@ -53,8 +54,6 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log(user);
-        navigate('/browse');
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -69,7 +68,7 @@ const Login = () => {
       <Header />
       <div className='absolute'>
         <img 
-        src='https://assets.nflxext.com/ffe/siteui/vlv3/826348c2-cdcb-42a0-bc11-a788478ba5a2/6d20b198-e7ab-4e9f-a1aa-666faa0298f9/IN-en-20240729-POP_SIGNUP_TWO_WEEKS-perspective_WEB_a67d8c9e-8121-4a74-98e4-8005eb2df227_small.jpg'
+        src={BG_URL}
         alt='logo'
         />
       </div>
